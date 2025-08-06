@@ -5,7 +5,7 @@ import 'package:lesson_1/features/recipes/managers/categories_view_model.dart';
 import 'package:lesson_1/features/recipes/pages/recipe_page.dart';
 import 'package:provider/provider.dart';
 
-import 'category_detail_page.dart';
+import 'recipe_detail_page.dart';
 
 class CategoriesPage extends StatelessWidget {
 

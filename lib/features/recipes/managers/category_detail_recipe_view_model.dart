@@ -6,7 +6,7 @@ import '../../../core/client.dart';
 
 class RecipeDetailViewModel extends ChangeNotifier {
   bool isLoading = true;
-  Map<String, dynamic>? recipeData;
+  late Map<String, dynamic> recipeData;
   String? error;
 
   Future<void> fetchRecipeDetails(int recipeId) async {
@@ -14,7 +14,7 @@ class RecipeDetailViewModel extends ChangeNotifier {
     error = null;
     notifyListeners();
 
-    final response = await dio.get('/recipes/detail/');
+    final response = await dio.get('/recipes/detail/$recipeId');
 
     if (response.statusCode == 200) {
       recipeData = response.data;

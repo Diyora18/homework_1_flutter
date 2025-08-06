@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:lesson_1/features/common/app_bar_bottom.dart';
+import 'package:lesson_1/features/recipes/pages/categories_page.dart';
 import 'package:lesson_1/features/recipes/widgets/bottom_item.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -26,7 +27,12 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: Color(0xFF1C0F0D),
       elevation: 0,
       leading: IconButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => CategoriesPage()),
+          );
+        },
         icon: SvgPicture.asset("assets/arrow.svg"),
       ),
       centerTitle: true,

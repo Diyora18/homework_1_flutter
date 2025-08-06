@@ -5,7 +5,7 @@ import 'package:lesson_1/features/recipes/managers/recipes_view_model.dart';
 import 'package:lesson_1/features/recipes/widgets/recipe_item.dart';
 import 'package:provider/provider.dart';
 
-import 'category_detail_page.dart';
+import 'recipe_detail_page.dart';
 
 class RecipesPage extends StatelessWidget {
   final int categoryId;
@@ -78,10 +78,8 @@ class RecipesPage extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => CategoryDetailRecipe(
-                          recipeId: recipe.id,
-                          title: recipe.title,
-                          rating: num.tryParse(recipe.rating.toString()) ?? 0,
+                        builder: (context) => RecipeDetailPage(
+                          recipeId: recipe['id'],
                         ),
                       ),
                     );

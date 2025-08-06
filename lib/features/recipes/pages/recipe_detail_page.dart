@@ -4,16 +4,13 @@ import 'package:provider/provider.dart';
 
 import '../managers/category_detail_recipe_view_model.dart';
 
-class CategoryDetailRecipe extends StatelessWidget {
+class RecipeDetailPage extends StatelessWidget {
   final int recipeId;
-  final String title;
-  final num rating;
 
-  const CategoryDetailRecipe({
+  const RecipeDetailPage({
     super.key,
     required this.recipeId,
-    required this.title,
-    required this.rating,
+
   });
 
   @override
@@ -28,11 +25,6 @@ class CategoryDetailRecipe extends StatelessWidget {
 
           final recipe = viewModel.recipeData;
 
-          if (recipe == null) {
-            return const Scaffold(
-              body: Center(child: Text("Xatolik yuz berdi")),
-            );
-          }
 
           return Scaffold(
             backgroundColor: Color(0xFF1C0F0D),
@@ -81,7 +73,7 @@ class CategoryDetailRecipe extends StatelessWidget {
                                     size: 12,
                                   ),
                                   Text(
-                                    "${recipe['stars'] ?? rating}",
+                                    "${recipe['stars'] ?? viewModel.recipeData['rating']}",
                                     style: TextStyle(
                                       fontSize: 12,
                                       color: Colors.white,
