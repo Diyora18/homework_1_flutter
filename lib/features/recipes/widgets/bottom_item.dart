@@ -23,13 +23,14 @@ class _BottomItemState extends State<BottomItem> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        setState(() {
-
-        });
+        setState(() {});
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(
-            builder: (context) =>
-                RecipesPage(categoryId: widget.id, title: widget.title, selectedIndex: 0),
+            builder: (context) => RecipesPage(
+              categoryId: widget.id,
+              title: widget.title,
+              selectedIndex: 0,
+            ),
           ),
         );
       },
