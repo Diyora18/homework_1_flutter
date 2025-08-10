@@ -107,7 +107,9 @@ class AllergicPage extends StatelessWidget {
                           backgroundColor: Color(0xFFFD5D69),
                           fixedSize: Size(162, 45),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          context.push("/onboarding1");
+                        },
                         child: Text(
                           "Continue",
                           style: TextStyle(
