@@ -26,10 +26,9 @@ class _BottomItemState extends State<BottomItem> {
         setState(() {});
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(
-            builder: (context) => RecipesPage(
+            builder: (context) => CategoryDetailPagee(
               categoryId: widget.id,
               title: widget.title,
-              selectedIndex: 0,
             ),
           ),
         );

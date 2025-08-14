@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lesson_1/features/onboarding/managers/onboarding_view_model.dart';
 import 'package:lesson_1/features/recipes/managers/categories_view_model.dart';
 import 'package:provider/provider.dart';
 
@@ -14,7 +15,7 @@ class OnboardingPage3 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => CategoriesViewModel(),
+      create: (context) => CategoryViewModel(),
       child: Scaffold(
         backgroundColor: Color(0xFF1C0F0D),
         appBar: AppBar(
@@ -30,7 +31,7 @@ class OnboardingPage3 extends StatelessWidget {
             ),
           ),
         ),
-        body: Consumer<CategoriesViewModel>(
+        body: Consumer<CategoryViewModel>(
           builder: (context, cv, child) {
             if (cv.isLoading) {
               return Center(child: CircularProgressIndicator());
@@ -77,7 +78,7 @@ class OnboardingPage3 extends StatelessWidget {
                       ),
 
                       onPressed: () {
-                        context.push(("/levels"));
+                        context.push(("/email"));
                       },
 
                       child: Text(

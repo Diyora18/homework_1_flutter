@@ -45,7 +45,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         ),
       ),
       actions: actions,
-      bottom: RecipeAppBarBottom(),
+      bottom: RecipeAppBarBottom(selectedIndex: selectedIndex,),
     );
   }
 }

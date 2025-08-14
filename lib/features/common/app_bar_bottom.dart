@@ -8,7 +8,8 @@ import '../recipes/widgets/bottom_item.dart';
 
 class RecipeAppBarBottom extends StatelessWidget
     implements PreferredSizeWidget {
-  const RecipeAppBarBottom({super.key, });
+  final num selectedIndex;
+  const RecipeAppBarBottom({super.key, required this.selectedIndex, });
 
 
 
@@ -17,7 +18,7 @@ class RecipeAppBarBottom extends StatelessWidget
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<RecipesViewModel>(
+    return Consumer<CategoryViewModel>(
       builder: (context, vm, child) {
         return SingleChildScrollView(
           scrollDirection: Axis.horizontal,
@@ -31,7 +32,7 @@ class RecipeAppBarBottom extends StatelessWidget
                   child: BottomItem(
                     id: vm.categories[index].id,
                     title: vm.categories[index].title,
-                    isSelected: vm.categories[index].id == vm.categoryId,
+                    isSelected: vm.categories[index].id == selectedIndex,
                   ),
                 ),
               ),

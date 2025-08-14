@@ -1,27 +1,41 @@
-
 import 'package:flutter/material.dart';
+import 'package:lesson_1/core/models/home/recipe_detail_model.dart';
+import 'package:lesson_1/core/models/home/recipe_model.dart';
 
 import '../../../core/client.dart';
 
 
 class RecipeDetailViewModel extends ChangeNotifier {
-  bool isLoading = true;
-  late Map<String, dynamic> recipeData;
+  final ApiClient apiClient = ApiClient();
+  List<DetailModel> recipes = [];
+  bool isLoading = false;
   String? error;
 
-  Future<void> fetchRecipeDetails(int recipeId) async {
+
+  Future<void> fetchRecipeDetails(num recipeId) async {
     isLoading = true;
     error = null;
     notifyListeners();
 
-    final response = await dio.get('/recipes/detail/$recipeId');
+    final result = await apiClient.get<dynamic>(
+      "recipes/list", queryParams: {"Category": recipeId},
+    );
 
-    if (response.statusCode == 200) {
-      recipeData = response.data;
-    } else {
-      error = "Xatolik: ${response.statusCode}";
-    }
+    result.fold(
+          (e) {
+        error = 'Xatolik: $e';
+      },
+          (data) {
+        try {
+          recipes = (data as List)
+              .map((x) => DetailModel.fromJson(x))
+              .toList();
+        } catch (e) {
+          error = "Malumotlarni pars qilishda xato: $e";
+        }
+      },
 
+    );
     isLoading = false;
     notifyListeners();
   }

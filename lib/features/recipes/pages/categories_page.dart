@@ -15,7 +15,7 @@ class CategoriesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => CategoriesViewModel(),
+      create: (context) => CategoryViewModel(),
       builder: (context, child) => Scaffold(
         backgroundColor: Color(0xFF1C0F0D),
         appBar: AppBar(
@@ -61,7 +61,7 @@ class CategoriesPage extends StatelessWidget {
             ),
           ],
         ),
-        body: Consumer<CategoriesViewModel>(
+        body: Consumer<CategoryViewModel>(
           builder: (context, vm, child) {
             return GridView.builder(
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -75,10 +75,9 @@ class CategoriesPage extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => RecipesPage(
+                      builder: (context) => CategoryDetailPagee(
                         categoryId: vm.categories[index].id,
                         title: vm.categories[index].title,
-                        selectedIndex: vm.categories[index].id,
                       ),
                     ),
                   );

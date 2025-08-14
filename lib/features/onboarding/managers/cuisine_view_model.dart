@@ -1,25 +1,45 @@
 import 'package:flutter/material.dart';
+import 'package:lesson_1/core/models/onboarding/allergic_model.dart';
 import 'package:lesson_1/core/models/onboarding/cuisine_model.dart';
-
 import '../../../core/client.dart';
 
-class CuisineViewModel extends ChangeNotifier{
-  CuisineViewModel(){
-    fetchCuisines();
+
+class CuisineViewModel extends ChangeNotifier {
+  final ApiClient apiClient = ApiClient();
+
+  CuisineViewModel() {
+    getCuisine();
   }
 
-  List<CuisinesModel> cuisines=[];
+  List<CuisinesModel> cuisines = [];
   bool isLoading = false;
+  String? error;
 
-  Future<void> fetchCuisines() async {
-    var response = await dio.get("/cuisines/list");
-    if (response.statusCode != 200) {
-      throw Exception(response.data);
-    } else {
-      cuisines = (response.data as List)
-          .map((x) => CuisinesModel.fromJson((x)))
-          .toList();
-    }
+  Future<void> getCuisine() async {
+    isLoading = true;
+    error = null;
+    notifyListeners();
+
+    final result = await apiClient.get<dynamic>(
+      "/cuisines/list",
+    );
+
+    result.fold(
+          (e) {
+        error = "Xatolik: $e";
+      },
+          (data) {
+        try {
+          cuisines = (data as List)
+              .map((x) => CuisinesModel.fromJson(x))
+              .toList();
+        } catch (e) {
+          error = "Ma'lumotlarni parse qilishda xato: $e";
+        }
+      },
+    );
+
+    isLoading = false;
     notifyListeners();
   }
 }
